@@ -41,14 +41,6 @@ func GetWeatherJSON(url string) (*weatherAPI, error) {
 	// Close this
 	defer response.Body.Close()
 
-	/*
-		body, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Print(string(body))
-	*/
-
 	// Decodes response to target structure. PROBLEM: JSON may be in faulty format and decoder does not work.
 	var data weatherAPI
 	if err := json.NewDecoder(response.Body).Decode(&data); err != nil {
